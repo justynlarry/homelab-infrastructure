@@ -20,28 +20,32 @@ My technical focus is on **DevOps, Systems Administration, metrics analysis, and
 This project runs on a **4-node Proxmox VE cluster** with additional standalone machines. All hardware has been refurbished, upgraded with SSDs, NVMe, RAM, and cooling enhancements.
 
 ### Proxmox Cluster:
-1. **deathStar** (Lenovo ThinkCentre 710 MT)
+1. **pveBlack** (Lenovo ThinkCentre 710 MT)
    - 500GB HDD, 500GB SSD, 500GB NVMe
    - 16GB RAM, Intel i5 (4-core)
    - Hosts: Proxmox VE, Primary Proxmox Backup Server
 
-2. **red-one** (Dell Optiplex 3020)
+2. **pveRed** (Dell Optiplex 3020)
    - 500GB HDD, 16GB RAM, Intel i5 (4-core)
    - Hosts: Proxmox VE
 
-3. **hth** (Dell Inspiron 3650)
+3. **pveGreen** (Dell Inspiron 3650)
    - 1TB HDD, 16GB RAM, Intel i5 (4-core)
-   - Hosts: Proxmox VE, Redundant PBS instance
+   - Hosts: Proxmox VE, Redundant PBS instance synced from pveBlack
 
-4. **secondSun** (Toshiba Satellite s55T)
+4. **debGold** (Toshiba Satellite s55T)
    - 500GB SSD, 16GB RAM, Intel i7 (8-core)
-   - Hosts: Proxmox VE
+   - Hosts: Debian Server, Bare Metal
+
+5. **debGold** (Gateway557)
+   - 250GB SSD, 8GB RAM, Intel i5 4-core
+   - Hosts Debian Server, Bare Metal
+
 
 ### Standalone/Bare Metal:
-- **Big Blue** (Gateway N557): Ubuntu Server – will host ELK stack
-- **HP Pavilion G7**: Kali Linux – cybersecurity exploration
+- **HP Pavilion G7**: Debian Linux – workstation, RDP client
 - **Windows 11 Dev Laptop** (Dell 5491 2n1): Docker Desktop, VS Code
-- **MacBook Pro A1506**: Ubuntu Desktop w/ RDP client
+- **MacBook Pro A1506**: Debian Desktop -> i3 Windows Manager, RDP client
 - **MacBook Pro 2011**: macOS legacy system
 
 All systems are connected via a managed switch.
@@ -52,17 +56,22 @@ All systems are connected via a managed switch.
 
 ### 🚀 Core Technologies:
 - **Proxmox Backup Server** (2 instances on VMs)
-- **Docker Containers**: NGINX, Prometheus, Grafana
+- **Docker Containers**: NGINX, Prometheus, Grafana, MySQL, Python
 - **Kubernetes**:
   - `K3s` – 3-node cluster (Cloudflare-tunneled public site)
   - `K8s` – 5-node cluster (also public-facing)
-- **Grafana + Prometheus**: Two separate dashboards
-- **Suricata + Loki + Promtail**: Intrusion detection & log ingestion
+- **Grafana + Prometheus**: Gathers input from Prometheus, systemd/Python/Docker instances, MySQL Database
 - **Heimdall**: Dashboard for services
 - **Jellyfin**: Personal media server
 - **Cloudflare Tunnel**: Secure external access to web services
 - **Tailscale**: Remote SSH and file access
-- **LAMP stacks** for legacy website hosting
+- **LAMP stacks** For legacy website hosting
+- **ELK Stack** For network traffic monitoring
+- **OPNSense** Services a small VLAN for the bare metal servers
+- **Ansible** Playbooks for Daily System Maintenance, and Systems Log Monitoring.  Logs parsed by python and stored in MySQL database for use by Grafana Dashboard.
+- **VaultWarden** LXC Container storing system login information
+- **Jenkins** Automates Ansible playbooks
+- **Restic** Employs Systemd to run automated backup of core files to file-server from bare metal machines
 
 ### 💻 File Sharing:
 - Samba-based file server accessible through Tailscale
