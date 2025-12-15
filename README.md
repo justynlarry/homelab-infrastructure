@@ -66,7 +66,9 @@ Debian Server (bare metal)
         │                                                                │
         │  ┌────────────┐  ┌────────────┐  ┌────────────┐                │
         │  │  pveBlack  │  │   pveRed   │  │  pveGreen  │                │
-        │  │  (PBS #1)  │  │            │  │  (PBS #2)  │                │
+        │  │  (PBS #1)  │  │  (PBS #3)  │  │  (PBS #2)  │                │
+        │  │            │  │  Future    │  │            │                │
+        │  │            │  │  Expansion │  │            │                │
         │  └─────┬──────┘  └─────┬──────┘  └─────┬──────┘                │
         │        │               │               │                       │
         │   VM / LXC Services (Docker, Grafana, Prometheus, ELK, etc.)   │
