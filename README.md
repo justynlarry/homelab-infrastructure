@@ -12,7 +12,7 @@ This homelab is a personal DevOps and Systems Administration playground designed
 
 My technical focus centers on DevOps, Linux systems administration, monitoring/metrics, and networking.
 
-# 🔧 Infrastructure Overview
+# Infrastructure Overview
 The environment consists of a 4-node Proxmox VE cluster with additional bare-metal and workstation systems. All hardware is refurbished and upgraded with SSD/NVMe storage, additional RAM, and improved cooling.
 ## Proxmox VE Cluster
 ### pveBlack (Lenovo ThinkCentre 710 MT)
@@ -63,7 +63,7 @@ All systems are connected through a managed switch with ongoing VLAN segmentatio
 - Cloudflare Tunnel – Secure external access without port forwarding
 - Tailscale – Remote SSH and file access
 - LAMP stacks – Legacy website hosting
-- ELK Stack – Network and system log analysis
+- ELK Stack – Deployed on bare metal for centralized log ingestion and analysis, collecting system, network, and security-related logs to support troubleshooting, visibility, and future SIEM-style workflows
 - OPNsense – VLAN routing and firewall services
 - Ansible – Daily maintenance and log-collection playbooks
 - Jenkins – Automates Ansible workflows
@@ -106,6 +106,12 @@ Automation is a core focus of this project, emphasizing repeatability and recove
 - Disk health, lifecycle, and temperature
 - Memory utilization per node and VM
 
+### ELK Stack
+- Centralized log analysis 
+- Authentication events
+- System activity
+- Network traffic
+
 ## Challenges & Lessons Learned
 Problems Worked Through
 - LVM – From intimidating to foundational
@@ -117,14 +123,25 @@ Problems Worked Through
 You never understand a tool the first time. Rebuilding, breaking, and documenting is what turns exposure into skill.
 
 ### Future Plans
-✅ Finalize VLAN migration
-✅ Deploy ELK stack on Ubuntu bare metal
-🔄 Migrate ELK stack into K3s
-🧪 Expand PBS coverage (Windows + additional bare metal)
-🧠 Deepen Ansible and Python automation
-🐳 Advance Docker and Kubernetes proficiency
-📬 Contact
+-  Finalize VLAN migration -HW dependent,current switch can't manage CARP
+-  Migrate ELK stack into K3s
+-  Expand PBS coverage (Windows + additional bare metal)
+-  Deepen Ansible and Python automation
+-  Advance Docker and Kubernetes proficiency
 
+## Canonical Portfolio Project (In Progress)
+This homelab also serves as the foundation for a **canonical portfolio project** focused on integrating modern infrastructure with LLM-driven workflows.
+### Current work includes:
+- Self-hosted LLM infrastructure (Ollama-based) running on Debian bare metal
+- Secure containerized deployment via Docker Compose
+- CLI-driven interaction for system-aware task execution
+- Ongoing design of a FastAPI-based service layer for controlled LLM access
+### The goal of this project is to demonstrate:
+- Practical LLM integration into Linux systems
+- Secure service boundaries and automation workflows
+- Infrastructure-first AI experimentation aligned with real DevOps practices
+
+### Contact
 GitHub: @justynlarry
 LinkedIn: linkedin.com/in/justynlarry
 
