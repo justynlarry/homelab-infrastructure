@@ -142,7 +142,7 @@ This homelab also serves as the foundation for a **canonical portfolio project**
 - Infrastructure-first AI experimentation aligned with real DevOps practices
 
 ### Contact
-GitHub: @justynlarry
-LinkedIn: linkedin.com/in/justynlarry
+- GitHub: @justynlarry
+- LinkedIn: linkedin.com/in/justynlarry
 
 ### Built, not bought. Learned by breaking.
