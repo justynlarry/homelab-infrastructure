@@ -40,6 +40,54 @@ Debian Server (bare metal)
 - 250GB SSD, 8GB RAM, Intel i5 (4-core)
 Debian Server (bare metal)
 
+```
+                           ┌───────────────────────────┐
+                           │        Internet           │
+                           └─────────────┬─────────────┘
+                                         │
+                              Cloudflare Tunnel (HTTPS)
+                                         │
+                              ┌──────────▼───────────┐
+                              │   Public Services    │
+                              │ (K3s / K8s Clusters) │
+                              └──────────┬───────────┘
+                                         │
+                    ┌────────────────────┴────────────────────┐
+                    │          Managed Switch (VLANs)         │
+                    └──────────┬───────────────┬──────────────┘
+                               │               │
+                        ┌──────▼──────┐ ┌──────▼────────┐
+                        │  OPNsense   │ │  Tailscale    │
+                        │ Router/VLAN │ │ Secure Access │
+                        └──────┬──────┘ └──────┬────────┘
+                               │               │
+        ┌──────────────────────┴───────────────┴─────────────────────────┐
+        │                        Proxmox VE Cluster                      │
+        │                                                                │
+        │  ┌────────────┐  ┌────────────┐  ┌────────────┐                │
+        │  │  pveBlack  │  │   pveRed   │  │  pveGreen  │                │
+        │  │  (PBS #1)  │  │            │  │  (PBS #2)  │                │
+        │  └─────┬──────┘  └─────┬──────┘  └─────┬──────┘                │
+        │        │               │               │                       │
+        │   VM / LXC Services (Docker, Grafana, Prometheus, ELK, etc.)   │
+        └────────┬───────────────────────────────────────────────┬───────┘
+                 │                                               │
+        ┌────────▼────────┐                             ┌────────▼────────┐
+        │  Bare Metal     │                             │   File Server   │
+        │ Debian Servers  │                             │   (Samba)       │
+        │  debGold-1/2    │                             │   via Tailscale │
+        │  ELK, Jenkins,  │                             └─────────────────┘
+        │  LLM (Ollama)   │
+        └────────┬────────┘
+                 │
+        ┌────────▼────────┐
+        │ Workstations &  │
+        │ Dev Laptops     │
+        │ (RDP / SSH)     │
+        └─────────────────┘
+
+```
+
 ## Workstations / Clients
 - HP Pavilion G7 – Debian Linux workstation, RDP client
 - Dell Latitude 5491 (Windows 11 Dev Laptop) – Docker Desktop, VS Code
