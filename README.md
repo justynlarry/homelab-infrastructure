@@ -149,7 +149,7 @@ A large part of this project focuses on scripting and automation:
 ---
 
 ## 🖼 Screenshots
-![Grafana Homelab Dashboard](./path-to-screenshot.png)
+
 
 ---
 
