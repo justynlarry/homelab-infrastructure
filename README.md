@@ -1,6 +1,6 @@
 # Homelab Infrastructure & Automation Project
 
-![Grafana Dashboard](https://github.com/your-username/your-repo-name/blob/main/path-to-your-screenshot.png)
+
 
 ## Overview
 This homelab serves as a personal DevOps and Systems Administration playground — enabling continuous learning, full-stack experimentation, and self-hosted infrastructure. It supports the following real-world use cases:
